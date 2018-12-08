@@ -8,14 +8,16 @@ public class PatternRecognition : MonoBehaviour {
     public float beatCounter = 0f;
     public string beatPatternString = "";
 
+    private Dictionary<string, string> patternDictionary = new Dictionary<string, string>();
+
     [SerializeField] private int Bpm;
     private float secondsPerBeat;
-    private float accuracy = 0.3f;
+    private float accuracy = 0.35f;
     private float beatTimer = 0;
     [SerializeField] private bool startBeatTimer = true;
     [SerializeField] private bool startPattern;
     [SerializeField] private float startCounter;
-    private float beatStep = 1f;
+    private float beatStep = 0.5f;
 
 	// Use this for initialization
 	void Start ()
@@ -42,6 +44,7 @@ public class PatternRecognition : MonoBehaviour {
             if(startPattern && (beatCounter - startCounter) * beatStep >= 3)
             {
                 Debug.Log("Check Pattern");
+
                 CheckPattern();
             }
 
@@ -58,6 +61,8 @@ public class PatternRecognition : MonoBehaviour {
                         startPattern = true;
                         startCounter = Mathf.RoundToInt(beatCounter);
                         beatPatternString += "1";
+
+                        CheckPattern();
                     }
                     else
                     {
@@ -72,8 +77,10 @@ public class PatternRecognition : MonoBehaviour {
                     if (BeatRecognizer(beatTiming))
                     {
                         int offset = (beatTiming > 0) ? -1 : 0;
-                        PatternFill(offset);
+                        beatPatternString = PatternFill(offset);
                         beatPatternString += "1";
+
+                        CheckPattern();
                     }
                     else
                     {
@@ -87,18 +94,19 @@ public class PatternRecognition : MonoBehaviour {
     
     private void CheckPattern()
     {
-        PatternFill();
+        string pattern = PatternFill();
         Debug.Log("Length " + beatPatternString.Length);
         Debug.Log(beatPatternString);
-        ResetPattern();
     }
 
-    private void PatternFill(int offset = 0)
+    private string PatternFill(int offset = 0)
     {
+        string result = beatPatternString;
         while (beatPatternString.Length - offset < (beatCounter - startCounter))
         {
-            beatPatternString += "0";
+            result += "0";
         }
+        return result;
     }
 
     private void ResetPattern()
@@ -126,4 +134,35 @@ public class PatternRecognition : MonoBehaviour {
         imageObject.SetActive(false);
     }
     
+    private PatternState CheckDictionary(string pattern)
+    {
+        if(patternDictionary.ContainsKey(pattern))
+        {
+            return PatternState.FoundPattern;
+        }
+
+        int count = 0;
+        foreach(string key in patternDictionary.Keys)
+        {
+            string compareString = key.Substring(pattern.Length);
+            if(compareString == pattern)
+            {
+                ++count;
+            }
+        }
+
+        if(count > 0)
+        {
+            return PatternState.Valid;
+        }
+
+        return PatternState.Invalid;
+    }
+
+    private enum PatternState
+    {
+        Valid,
+        Invalid,
+        FoundPattern
+    }
 }
