@@ -143,9 +143,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f5ba7809e6282148a42b0a52386f973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 431128692}
+  imageObject: {fileID: 431128692}
+  beatCounter: 0
+  beatPatternString: 
   Bpm: 100
-  startBeatTimer: 0
+  startBeatTimer: 1
+  startPattern: 0
+  startCounter: 0
 --- !u!114 &388832944
 MonoBehaviour:
   m_ObjectHideFlags: 0
