@@ -97,6 +97,23 @@ public class PatternRecognition : MonoBehaviour {
         string pattern = PatternFill();
         Debug.Log("Length " + beatPatternString.Length);
         Debug.Log(beatPatternString);
+
+        switch (CheckDictionary(pattern))
+        {
+            case PatternState.FoundPattern:
+                Debug.Log("Found Pattern!");
+                ResetPattern();
+                break;
+
+            case PatternState.Valid:
+                Debug.Log("Valid Pattern");
+                break;
+
+            case PatternState.Invalid:
+                Debug.Log("Invalid Pattern, resetting");
+                ResetPattern();
+                break;
+        }
     }
 
     private string PatternFill(int offset = 0)
