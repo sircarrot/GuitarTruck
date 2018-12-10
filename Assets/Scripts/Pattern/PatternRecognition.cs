@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+///  Basically the input manager
+/// </summary>
 public class PatternRecognition : MonoBehaviour {
+
+    private GameManager gameManager;
+
+    public PatternScriptableObject scriptableObject;
 
     public GameObject imageObject;
     public float beatCounter = 0f;
     public string beatPatternString = "";
 
-    private Dictionary<string, string> patternDictionary = new Dictionary<string, string>();
+    private Dictionary<string, Pattern> patternDictionary = new Dictionary<string, Pattern>();
 
     [SerializeField] private int Bpm;
     private float secondsPerBeat;
@@ -18,17 +25,22 @@ public class PatternRecognition : MonoBehaviour {
     [SerializeField] private bool startPattern;
     [SerializeField] private float startCounter;
     private float beatStep = 0.5f;
+    private bool initComplete;
 
-	// Use this for initialization
-	void Start ()
+    public void Init()
     {
         secondsPerBeat = 60f / Bpm;
-        
+        gameManager = Toolbox.Instance.GetManager<GameManager>();
+        foreach(Pattern pattern in scriptableObject.patternList)
+        {
+            string patternString = pattern.patternString.Trim(' ');
+            patternDictionary.Add(patternString, pattern);
+        }
+    }
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
+        if (!initComplete) return;
         if (startBeatTimer)
         {
             beatTimer += Time.deltaTime;
@@ -41,12 +53,12 @@ public class PatternRecognition : MonoBehaviour {
                 StartCoroutine(ImageCoroutine());
             }
 
-            if(startPattern && (beatCounter - startCounter) * beatStep >= 3)
-            {
-                Debug.Log("Check Pattern");
+            //if(startPattern && (beatCounter - startCounter) * beatStep >= 3)
+            //{
+            //    Debug.Log("Check Pattern");
 
-                CheckPattern();
-            }
+            //    CheckPattern();
+            //}
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -102,6 +114,7 @@ public class PatternRecognition : MonoBehaviour {
         {
             case PatternState.FoundPattern:
                 Debug.Log("Found Pattern!");
+                // Play pattern animation
                 ResetPattern();
                 break;
 
@@ -144,6 +157,10 @@ public class PatternRecognition : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    ///   TODO: Remove this and switch to UI Manager
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ImageCoroutine()
     {
         imageObject.SetActive(true);
