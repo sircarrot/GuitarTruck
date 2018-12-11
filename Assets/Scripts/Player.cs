@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    public int health;
-
+    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
+    public float HealthPercentage
+    {
+        get { return Mathf.Max(health / maxHealth, 0); }
+    }
     public void Damage(int damage)
     {
         health -= damage;

@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour {
         if (health < 0)
         {
             // Health below 0
+            Debug.Log("Enemy Dead");
         }
     }
 
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour {
         if (stagger < 0)
         {
             // Stagger below 0
+            Debug.Log("Enemy Stunned");
         }
     }
 

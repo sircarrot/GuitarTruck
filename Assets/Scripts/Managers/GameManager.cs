@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour, IManager {
     public void DamagePlayer(int value)
     {
         player.Damage(value);
+        uiController.UpdatePlayerHPBar(player.HealthPercentage);
     }    
     #endregion
 
@@ -28,11 +29,13 @@ public class GameManager : MonoBehaviour, IManager {
     public void DamageEnemyHP(int value)
     {
         enemy.Damage(value);
+        uiController.UpdateEnemyHPBar(enemy.HealthPercentage);
     }
 
     public void DamageEnemyStagger(int value)
     {
         enemy.ReduceStagger(value);
+        uiController.UpdateEnemyStaggerBar(enemy.StaggerPercentage);
     }
     #endregion
 
