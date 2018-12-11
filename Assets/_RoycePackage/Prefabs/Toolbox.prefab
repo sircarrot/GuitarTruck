@@ -83,3 +83,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aac4caa12304d34c8d4aed1d2adc9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiController: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
