@@ -63,7 +63,16 @@ public class Enemy : MonoBehaviour {
 
     public void SelectAttack()
     {
-        PatternColor randomColor = (PatternColor)Random.Range(0, (int) PatternColor.Blue);
+        PatternColor randomColor;
+        while (true)
+        {
+            randomColor = (PatternColor)Random.Range(0, (int)PatternColor.Blue);
+
+            if(randomColor != PatternColor.None)
+            {
+                break;
+            }
+        }
 
         currentAttack = randomColor;
         

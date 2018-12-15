@@ -12,8 +12,19 @@ public class Player : MonoBehaviour {
     {
         get { return Mathf.Max(health / maxHealth, 0); }
     }
+
+    private PatternColor defendColor;
+
+    public void Defend()
+    {
+
+    }
+
     public void Damage(int damage)
     {
+
+
+
         health -= damage;
 
         if(health <= 0)

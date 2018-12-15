@@ -16,6 +16,7 @@ public enum PatternType
 
 public enum PatternColor
 {
+    None,
     Red,
     Blue,
 }

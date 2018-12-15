@@ -131,9 +131,11 @@ public class PatternRecognition : MonoBehaviour {
         switch(patternResult.type)
         {
             case PatternType.Attack:
+
                 break;
 
             case PatternType.Defend:
+
                 break;
         }
 
