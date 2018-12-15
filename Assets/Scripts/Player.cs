@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    public GameManager gameManager;
+
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     public float HealthPercentage
