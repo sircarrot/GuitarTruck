@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour, IManager {
         patternRecognition = gameObject.GetComponent<PatternRecognition>();
 
         patternRecognition.Init();
+
+        enemy.gameManager = this;
+        player.gameManager = this;
     }
 
     #region Player Functions
