@@ -25,7 +25,7 @@ public class PatternRecognition : MonoBehaviour {
     [SerializeField] private bool startPattern;
     [SerializeField] private float startCounter;
     private float beatStep = 0.5f;
-    private bool initComplete;
+    private bool initComplete = false;
 
     public void Init()
     {
@@ -36,6 +36,7 @@ public class PatternRecognition : MonoBehaviour {
             string patternString = pattern.patternString.Trim(' ');
             patternDictionary.Add(patternString, pattern);
         }
+        initComplete = true;
     }
 
     // Update is called once per frame
@@ -50,15 +51,8 @@ public class PatternRecognition : MonoBehaviour {
             {
                 beatTimer -= secondsPerBeat;
                 Debug.Log("Beat");
-                StartCoroutine(ImageCoroutine());
+                StartCoroutine(BorderCoroutine());
             }
-
-            //if(startPattern && (beatCounter - startCounter) * beatStep >= 3)
-            //{
-            //    Debug.Log("Check Pattern");
-
-            //    CheckPattern();
-            //}
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -115,6 +109,7 @@ public class PatternRecognition : MonoBehaviour {
             case PatternState.FoundPattern:
                 Debug.Log("Found Pattern!");
                 // Play pattern animation
+                PlayPattern(pattern);
                 ResetPattern();
                 break;
 
@@ -127,6 +122,21 @@ public class PatternRecognition : MonoBehaviour {
                 ResetPattern();
                 break;
         }
+    }
+
+    private void PlayPattern(string pattern)
+    {
+        Pattern patternResult = patternDictionary[pattern];
+
+        switch(patternResult.type)
+        {
+            case PatternType.Attack:
+                break;
+
+            case PatternType.Defend:
+                break;
+        }
+
     }
 
     private string PatternFill(int offset = 0)
@@ -161,11 +171,11 @@ public class PatternRecognition : MonoBehaviour {
     ///   TODO: Remove this and switch to UI Manager
     /// </summary>
     /// <returns></returns>
-    private IEnumerator ImageCoroutine()
+    private IEnumerator BorderCoroutine()
     {
-        imageObject.SetActive(true);
+        //imageObject.SetActive(true);
         yield return new WaitForSeconds(0.05f);
-        imageObject.SetActive(false);
+        //imageObject.SetActive(false);
     }
     
     private PatternState CheckDictionary(string pattern)
