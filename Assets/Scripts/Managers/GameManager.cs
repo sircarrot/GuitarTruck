@@ -21,11 +21,18 @@ public class GameManager : MonoBehaviour, IManager {
     }
 
     #region Player Functions
-    public void DamagePlayer(int value)
+    public void DamagePlayer(int value, PatternColor color)
     {
-        player.Damage(value);
+        player.Damage(value, color);
         uiController.UpdatePlayerHPBar(player.HealthPercentage);
     }    
+
+    public void SetDefend(Pattern pattern)
+    {
+        player.Defend(pattern);
+        // Enemy Attack delay = 0
+        enemy.AttackNow();
+    }
     #endregion
 
     #region Enemy Functions

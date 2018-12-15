@@ -131,11 +131,12 @@ public class PatternRecognition : MonoBehaviour {
         switch(patternResult.type)
         {
             case PatternType.Attack:
-
+                gameManager.DamageEnemyHP(patternResult.damage);
+                gameManager.DamageEnemyStagger(patternResult.stun);
                 break;
 
             case PatternType.Defend:
-
+                gameManager.SetDefend(patternResult);
                 break;
         }
 

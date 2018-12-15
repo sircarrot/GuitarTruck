@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     public GameManager gameManager;
+    public float baseCooldown;
+    public float baseStunned;
 
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
@@ -39,6 +41,17 @@ public class Enemy : MonoBehaviour {
             return;
         }
 
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+
+            if (cooldown <= 0)
+            {
+                SelectAttack();
+            }
+            return;
+        }
+
         if (attackDelay > 0)
         {
             attackDelay -= Time.deltaTime;
@@ -48,17 +61,6 @@ public class Enemy : MonoBehaviour {
                 Attack();
             }
         }
-
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-
-            if (cooldown <= 0)
-            {
-                SelectAttack();
-            }
-        }
-
     }
 
     public void SelectAttack()
@@ -80,20 +82,26 @@ public class Enemy : MonoBehaviour {
         // Show Timer
     }
 
+    public void AttackNow()
+    {
+        attackDelay = 0;
+
+        Attack();
+    }
+
     public void Attack()
     {
         int damage;
         switch (currentAttack)
         {
-
             default:
                 damage = 10;
                 break;
         }
 
-        // Damage player
-        
+        gameManager.DamagePlayer(damage, currentAttack);
 
+        cooldown = baseCooldown;
     }
 
     public void Damage(int value)
@@ -115,6 +123,8 @@ public class Enemy : MonoBehaviour {
         {
             // Stagger below 0
             Debug.Log("Enemy Stunned");
+            
+            stunnedDuration = baseStunned;
         }
     }
 }

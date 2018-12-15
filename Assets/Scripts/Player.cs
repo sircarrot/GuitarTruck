@@ -13,16 +13,23 @@ public class Player : MonoBehaviour {
         get { return Mathf.Max(health / maxHealth, 0); }
     }
 
-    private PatternColor defendColor;
+    private Pattern pattern;
 
-    public void Defend()
+    public void Defend(Pattern pattern)
     {
-
+        this.pattern = pattern;
     }
 
-    public void Damage(int damage)
+    public void Damage(int damage, PatternColor color)
     {
+        if(pattern != null && pattern.color == color)
+        {
+            //Defend Animation
 
+            pattern = null;
+            gameManager.DamageEnemyStagger(pattern.stun);
+            return;
+        }
 
 
         health -= damage;
