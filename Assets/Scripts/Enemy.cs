@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour {
     public GameManager gameManager;
     public float baseCooldown;
     public float baseStunned;
+    public float baseAttackDelay;
 
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
@@ -23,7 +24,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private float attackDelay = 1;
-    private float cooldown = 0;
+    [SerializeField] private float cooldown = 0;
     private float stunnedDuration = 0;
     private PatternColor currentAttack;
 
@@ -77,7 +78,7 @@ public class Enemy : MonoBehaviour {
         }
 
         currentAttack = randomColor;
-        
+        attackDelay = baseAttackDelay; // Should be changed based on color
         // Charge
         // Show Timer
     }
