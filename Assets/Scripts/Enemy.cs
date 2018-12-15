@@ -12,17 +12,17 @@ public class Enemy : MonoBehaviour {
     [SerializeField] private int maxHealth;
     public float HealthPercentage
     {
-        get { return Mathf.Max(health / maxHealth, 0); }
+        get { return Mathf.Max((float) health / (float) maxHealth , 0); }
     }
 
     [SerializeField] private int stagger;
     [SerializeField] private int maxStagger;
     public float StaggerPercentage
     {
-        get { return Mathf.Max(stagger / maxStagger, 0); }
+        get { return Mathf.Max((float) stagger / (float) maxStagger, 0); }
     }
 
-    private float attackDelay = 0;
+    private float attackDelay = 1;
     private float cooldown = 0;
     private float stunnedDuration = 0;
     private PatternColor currentAttack;

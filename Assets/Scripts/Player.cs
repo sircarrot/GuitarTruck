@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private int maxHealth;
     public float HealthPercentage
     {
-        get { return Mathf.Max(health / maxHealth, 0); }
+        get { return Mathf.Max((float) health / (float) maxHealth, 0); }
     }
 
     private Pattern pattern;
