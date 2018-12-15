@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    public GameManager gameManager;
+
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
     public float HealthPercentage
@@ -17,14 +19,71 @@ public class Enemy : MonoBehaviour {
     {
         get { return Mathf.Max(stagger / maxStagger, 0); }
     }
-    
+
+    private float attackDelay = 0;
+    private float cooldown = 0;
+    private float stunnedDuration = 0;
+    private PatternColor currentAttack;
+
+    private void Update()
+    {
+        if (stunnedDuration > 0)
+        {
+            stunnedDuration -= Time.deltaTime;
+
+            if (stunnedDuration <= 0)
+            {
+                //Remove Stun
+                SelectAttack();
+            }
+            return;
+        }
+
+        if (attackDelay > 0)
+        {
+            attackDelay -= Time.deltaTime;
+
+            if(attackDelay <= 0)
+            {
+                Attack();
+            }
+        }
+
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+
+            if (cooldown <= 0)
+            {
+                SelectAttack();
+            }
+        }
+
+    }
+
     public void SelectAttack()
     {
+        PatternColor randomColor = (PatternColor)Random.Range(0, (int) PatternColor.Blue);
 
+        currentAttack = randomColor;
+        
+        // Charge
+        // Show Timer
     }
 
     public void Attack()
     {
+        int damage;
+        switch (currentAttack)
+        {
+
+            default:
+                damage = 10;
+                break;
+        }
+
+        // Damage player
+        
 
     }
 
@@ -49,6 +108,4 @@ public class Enemy : MonoBehaviour {
             Debug.Log("Enemy Stunned");
         }
     }
-
-
 }
