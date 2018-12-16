@@ -57,6 +57,7 @@ public class PatternRecognition : MonoBehaviour {
                 beatTimer -= secondsPerBeat;
                 Debug.Log("Beat");
                 StartCoroutine(BorderCoroutine());
+                gameManager.BeatAnimation();
             }
 
             if (Input.GetMouseButtonDown(0))

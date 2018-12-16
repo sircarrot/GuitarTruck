@@ -49,4 +49,10 @@ public class GameManager : MonoBehaviour, IManager {
     }
     #endregion
 
+    // Call all animations in a beat
+    public void BeatAnimation()
+    {
+        // Player animation
+        // Enemy animation
+    }
 }
