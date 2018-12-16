@@ -10,9 +10,14 @@ public class GameManager : MonoBehaviour, IManager {
     [SerializeField] private Player player;
     [SerializeField] private Enemy enemy;
 
+    [SerializeField]
+    private AudioManager audioManager;
+
     public void Init()
     {
         patternRecognition = gameObject.GetComponent<PatternRecognition>();
+        audioManager = gameObject.GetComponent<AudioManager>();
+        audioManager.BGMPlayer(audioManager.audioLibrary.background);
 
         patternRecognition.Init();
 
@@ -53,6 +58,7 @@ public class GameManager : MonoBehaviour, IManager {
     public void BeatAnimation()
     {
         // Player animation
+        player.PlayerAnimationIdle();
         // Enemy animation
     }
 }
