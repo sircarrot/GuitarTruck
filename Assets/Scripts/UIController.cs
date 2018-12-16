@@ -39,6 +39,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    //TODO: Fix compile error
     public void UpdatePattern(string pattern)
     {
         int count = 0;
