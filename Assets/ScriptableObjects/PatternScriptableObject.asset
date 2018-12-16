@@ -11,3 +11,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e7eb0ea1765b084c9c5635267a1b942, type: 3}
   m_Name: PatternScriptableObject
   m_EditorClassIdentifier: 
+  patternList:
+  - patternString: 
+    type: 0
+    color: 0
+    damage: 0
+    stun: 0
+  - patternString: 
+    type: 0
+    color: 0
+    damage: 0
+    stun: 0

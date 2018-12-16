@@ -8,6 +8,10 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private int health;
     [SerializeField] private int maxHealth;
+
+    [SerializeField]
+    private Animator animator;
+
     public float HealthPercentage
     {
         get { return Mathf.Max((float) health / (float) maxHealth, 0); }
@@ -38,5 +42,15 @@ public class Player : MonoBehaviour {
         {
             Debug.Log("Game Over");
         }
+    }
+
+    public void PlayerAnimationIdle()
+    {
+        animator.SetTrigger("Idle");
+    }
+
+    public void PlayerAnimationAttack()
+    {
+        animator.SetTrigger("Idle");
     }
 }
