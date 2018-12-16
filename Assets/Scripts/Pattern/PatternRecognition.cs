@@ -12,10 +12,15 @@ public class PatternRecognition : MonoBehaviour {
     public PatternScriptableObject scriptableObject;
 
     public GameObject imageObject;
+
+    public GameObject playerObject;
+    public GameObject enemyObject;
+
     public float beatCounter = 0f;
     public string beatPatternString = "";
 
-    private Dictionary<string, Pattern> patternDictionary = new Dictionary<string, Pattern>();
+    [SerializeField]
+    public Dictionary<string, Pattern> patternDictionary = new Dictionary<string, Pattern>();
 
     [SerializeField] private int Bpm;
     private float secondsPerBeat;
@@ -176,9 +181,10 @@ public class PatternRecognition : MonoBehaviour {
     /// <returns></returns>
     private IEnumerator BorderCoroutine()
     {
-        //imageObject.SetActive(true);
+        imageObject.SetActive(true);
+
         yield return new WaitForSeconds(0.05f);
-        //imageObject.SetActive(false);
+        imageObject.SetActive(false);
     }
     
     private PatternState CheckDictionary(string pattern)
