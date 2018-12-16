@@ -61,4 +61,11 @@ public class GameManager : MonoBehaviour, IManager {
         player.PlayerAnimationIdle();
         // Enemy animation
     }
+
+    public void ResetPattern()
+    {
+        uiController.ResetPattern();
+    }
+
+    // Update pattern Function creates compile error
 }

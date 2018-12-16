@@ -42,10 +42,12 @@ public class UIController : MonoBehaviour
     public void UpdatePattern(string pattern)
     {
         int count = 0;
-        foreach(char character in pattern)
+        for(int i = 0; i < pattern.Length; ++i)
         {
+            string character = pattern.Substring(i, 1);
+
             patternPlaying[count].gameObject.SetActive(true);
-            if (character == '1')
+            if (character == "1")
             {
                 patternPlaying[count].sprite = clickedTrue;
             }
