@@ -10,6 +10,11 @@ public class UIController : MonoBehaviour
     [SerializeField] private Slider enemyHPBar;
     [SerializeField] private Slider enemyStaggerBar;
 
+    [SerializeField] private List<Image> patternPlaying;
+
+    [SerializeField] private Sprite clickedTrue;
+    [SerializeField] private Sprite clickedFalse;
+
     public void UpdatePlayerHPBar(float percentage)
     {
         playerHPBar.value = percentage;
@@ -24,4 +29,31 @@ public class UIController : MonoBehaviour
     {
         enemyStaggerBar.value = percentage;
     }
+
+    public void ResetPattern()
+    {
+        foreach(Image image in patternPlaying)
+        {
+            image.sprite = null;
+            image.gameObject.SetActive(false);
+        }
+    }
+
+    public void UpdatePattern(string pattern)
+    {
+        int count = 0;
+        foreach(char character in pattern)
+        {
+            patternPlaying[count].gameObject.SetActive(true);
+            if (character == '1')
+            {
+                patternPlaying[count].sprite = clickedTrue;
+            }
+            else
+            {
+                patternPlaying[count].sprite = clickedFalse;
+            }
+        }
+    }
+
 }
