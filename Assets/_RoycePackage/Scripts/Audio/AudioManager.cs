@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour, IManager
 {
+    public AudioLibrary audioLibrary;
+
     private GameObject bgmManager;
     private GameObject soundEffectManager;
     private GameObject voiceLineManager;

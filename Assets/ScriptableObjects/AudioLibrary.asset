@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89876d4e439c2234ab4e0fb411f37d30, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: 
+  background: {fileID: 8300000, guid: bbdbb1da307730643b2f38c17e30de5e, type: 3}
+  drumAttack1: {fileID: 8300000, guid: 51bfa8e447d8cd344a36ec0ebf476708, type: 3}
+  drumAttack2: {fileID: 8300000, guid: a9656aa3eecba8e48a07ca9d3712ff50, type: 3}
+  guitarAttack1: {fileID: 8300000, guid: 257b55cea52e829418e393945bb640a6, type: 3}
+  guitarAttack2: {fileID: 8300000, guid: ae580a54a90d5f14981be3b943f7e4aa, type: 3}
+  guitarDefense1: {fileID: 8300000, guid: cf57199334ea90b44ad306b277c98f6d, type: 3}
+  guitarDefense2: {fileID: 8300000, guid: b536b6d9ff091394ebf950883fa2391d, type: 3}
