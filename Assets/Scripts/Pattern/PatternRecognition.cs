@@ -101,8 +101,6 @@ public class PatternRecognition : MonoBehaviour {
                     }
                 }
             }
-
-            gameManager.PatternPlayedUI(PatternFill());
         }
 	}
     
@@ -164,7 +162,6 @@ public class PatternRecognition : MonoBehaviour {
     {
         beatPatternString = "";
         startPattern = false;
-        gameManager.ResetPattern();
     }
 
     private bool BeatRecognizer(float beatTiming)

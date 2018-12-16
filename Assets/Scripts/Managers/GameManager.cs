@@ -61,14 +61,4 @@ public class GameManager : MonoBehaviour, IManager {
         player.PlayerAnimationIdle();
         // Enemy animation
     }
-
-    public void PatternPlayedUI(string pattern)
-    {
-        uiController.UpdatePattern(pattern);
-    }
-
-    public void ResetPattern()
-    {
-        uiController.ResetPattern();
-    }
 }
